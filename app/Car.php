@@ -1,0 +1,60 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * App\Car
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Car newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Car newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Car query()
+ * @mixin \Eloquent
+ * @property int $id
+ * @property string $board
+ * @property string $picture
+ * @property int $card_type_id
+ * @property int $cilindraje_id
+ * @property int $brand_id
+ * @property int $color_id
+ * @property int $user_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Car whereBoard($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Car whereBrandId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Car whereCardTypeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Car whereCilindrajeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Car whereColorId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Car whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Car whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Car wherePicture($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Car whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Car whereUserId($value)
+ */
+class Car extends Model
+{
+    public function clients(){
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function subscription(){
+        return $this->belongsToMany(Subscription::class,'car_subscriptions','cars_id','subscription_id');
+    }
+
+    public function cilindrajes(){
+        return $this->belongsTo(Cilindraje::class);
+    }
+
+    public function color(){
+        return $this->belongsTo(Color::class);
+    }
+
+    public function car_type(){
+        return $this->belongsTo(CarType::class);
+    }
+
+    public function brand(){
+        return $this->belongsTo(Brand::class);
+    }
+}
