@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use  \App\cilindraje;
+use  \App\Cilindraje;
 
 class CilindrajesTableSeeder extends Seeder
 {
