@@ -20,7 +20,7 @@ class CreateWashersTable extends Migration
             $table->unsignedInteger('enterprise_id');
             $table->foreign('enterprise_id')->references('id')->on('enterprises');
             $table->enum('state', [
-                \App\washer::OCUPADO, \App\washer::LIBRE
+                \App\Washer::OCUPADO, \App\Washer::LIBRE
             ])->nullable();
             $table->timestamps();
         });
