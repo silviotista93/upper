@@ -16,17 +16,17 @@ class CilindrajesTableSeeder extends Seeder
 
         $cilindraje = new Cilindraje;
         $cilindraje->name = "< 1500 CC";
-        $cilindraje->picture = "/movil/img/cilindrajes/<_1500_CC.png";
+        $cilindraje->picture = "/movil/img/cilindrajes/menor_1500_CC.png";
         $cilindraje->save();
 
         $cilindraje = new Cilindraje;
         $cilindraje->name = ">= 1500 CC";
-        $cilindraje->picture = "/movil/img/cilindrajes/>=_1500_CC.png";
+        $cilindraje->picture = "/movil/img/cilindrajes/menor_igual_1500_CC.png";
         $cilindraje->save();
 
         $cilindraje = new Cilindraje;
         $cilindraje->name = "> 2500 CC";
-        $cilindraje->picture = "/movil/img/cilindrajes/>_2500_CC.png";
+        $cilindraje->picture = "/movil/img/cilindrajes/mayor_2500_CC.png";
         $cilindraje->save();
 
         $cilindraje = new Cilindraje;
