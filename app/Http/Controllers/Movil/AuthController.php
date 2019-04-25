@@ -2,27 +2,40 @@
 
 namespace App\Http\Controllers\Movil;
 
+use App\Mail\NewClienteUpper;
 use Illuminate\Http\Request;
 use App\User;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
     public function signup(Request $request)
     {
+        $password = trim(Str::random(8));
+        $pass = bcrypt($password);
         $request->validate([
             'name'     => 'required|string',
+            'last_name' => 'required|string',
             'email'    => 'required|string|email|unique:users',
-            'password' => 'required|string|confirmed',
+
         ]);
         $user = new User([
             'name'     => $request->name,
+            'last_name'     => $request->last_name,
             'email'    => $request->email,
-            'password' => bcrypt($request->password),
+            'avatar' => '/movil/img/perfil.jpg',
+            'slug' => Str::slug($request->name. mt_rand(1,10000), '-'),
+            'password' => $pass,
+            'phone_1' => $request->phone_1,
+
         ]);
         $user->save();
+        $user->roles()->attach(['3']);
+
+        \Mail::to($user->email)->send(new NewClienteUpper($user->email,$password));
         return response()->json([
             'message' => 'Successfully created user!'], 201);
     }
