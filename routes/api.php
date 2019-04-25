@@ -18,6 +18,13 @@ use Illuminate\Http\Request;
 });*/
 
 Route::group(['prefix' => 'auth', 'namespace'=>'Movil'], function () {
+
+    /*=============================================
+        RUTAS PARA LOGIN REDES SOCIALES
+    =============================================*/
+    Route::get('login/{driver}','AuthController@redirectToProvider')->name('social_auth');
+    Route::get('login/{driver}/callback','AuthController@handleProviderCallback');
+
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
 
