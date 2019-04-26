@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Wash_type wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Wash_type whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Wash_type whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Plan[] $plan
  */
 class Wash_type extends Model
 {

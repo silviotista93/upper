@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Color whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Color wherePicture($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Color whereUpdatedAt($value)
+ * @property-read \App\Car $car
  */
 class Color extends Model
 {

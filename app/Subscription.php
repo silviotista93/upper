@@ -23,6 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Subscription whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Subscription wherePlanId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Subscription whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Car[] $car
+ * @property-read \App\Plan $plans
  */
 class Subscription extends Model
 {

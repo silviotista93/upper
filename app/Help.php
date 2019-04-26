@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\help whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\help whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\help whereUserId($value)
+ * @property-read \App\User $user
  */
 class help extends Model
 {

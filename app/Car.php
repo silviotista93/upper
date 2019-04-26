@@ -31,6 +31,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Car wherePicture($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Car whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Car whereUserId($value)
+ * @property int $car_type_id
+ * @property-read \App\Brand $brand
+ * @property-read \App\CarType $car_type
+ * @property-read \App\Cilindraje $cilindrajes
+ * @property-read \App\User $clients
+ * @property-read \App\Color $color
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Subscription[] $subscription
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Car whereCarTypeId($value)
  */
 class Car extends Model
 {
