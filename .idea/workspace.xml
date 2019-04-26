@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f52dee45-083d-4765-a838-893a025c6e0c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_ide_helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/_ide_helper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Brand.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Brand.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Car.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Car.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/CarType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/CarType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Cilindraje.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Cilindraje.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Color.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Color.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Enterprise.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enterprise.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Help.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Help.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Movil/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Movil/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Plan.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Plan.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/PlanTypeWash.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/PlanTypeWash.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Role.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Subscription.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Subscription.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/UserSocialAccount.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/UserSocialAccount.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Wash_type.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Wash_type.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Washer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Washer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,8 +18,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="24" column="31" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="31" />
+            <state relative-caret-position="-16">
+              <caret line="5" column="13" lean-forward="true" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -45,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Movil/AuthController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="31" column="48" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
+            <state relative-caret-position="280">
+              <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
               <folding>
                 <element signature="e#46#75#0#PHP" expanded="true" />
               </folding>
@@ -66,7 +48,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/UserSocialAccount.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
+            <state relative-caret-position="446">
               <caret line="25" column="61" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="61" />
             </state>
           </provider>
@@ -337,15 +319,16 @@
       <workItem from="1555627315283" duration="793000" />
       <workItem from="1555944351615" duration="696000" />
       <workItem from="1556111619195" duration="5468000" />
-      <workItem from="1556200701143" duration="7826000" />
+      <workItem from="1556200701143" duration="8138000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49010000" />
+    <option name="totallyTimeSpent" value="49322000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27382874" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -717,15 +700,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="24" column="31" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/UserSocialAccount.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="25" column="61" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="61" />
+        <state relative-caret-position="-16">
+          <caret line="5" column="13" lean-forward="true" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -736,10 +712,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/UserSocialAccount.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="25" column="61" selection-start-line="25" selection-start-column="49" selection-end-line="25" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Movil/AuthController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="31" column="48" selection-start-line="31" selection-start-column="48" selection-end-line="31" selection-end-column="48" />
+        <state relative-caret-position="280">
+          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
           <folding>
             <element signature="e#46#75#0#PHP" expanded="true" />
           </folding>
