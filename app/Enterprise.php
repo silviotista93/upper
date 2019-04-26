@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Enterprise wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Enterprise whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Enterprise whereUserId($value)
+ * @property-read \App\User $user
  */
 class Enterprise extends Model
 {

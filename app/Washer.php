@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Washer whereState($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Washer whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Washer whereUserId($value)
+ * @property-read \App\User $user
  */
 class Washer extends Model
 {

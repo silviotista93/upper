@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\PlanTypeWash wherePlanId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\PlanTypeWash whereTypeWashId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\PlanTypeWash whereUpdatedAt($value)
+ * @property int|null $quantity
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\PlanTypeWash whereQuantity($value)
  */
 class PlanTypeWash extends Model
 {

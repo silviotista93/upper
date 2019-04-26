@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Cilindraje whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Cilindraje wherePicture($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Cilindraje whereUpdatedAt($value)
+ * @property-read \App\Car $car
  */
 class Cilindraje extends Model
 {

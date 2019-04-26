@@ -43,6 +43,16 @@ use Laravel\Passport\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereState($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
+ * @property string|null $avatar
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Car[] $car
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
+ * @property-read \App\Enterprise $enterprise
+ * @property-read \App\help $help
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Role[] $roles
+ * @property-read \App\UserSocialAccount $socialAcounts
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
+ * @property-read \App\Washer $washer
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereAvatar($value)
  */
 class User extends Authenticatable
 {

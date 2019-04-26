@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Brand whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Brand wherePicture($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Brand whereUpdatedAt($value)
+ * @property-read \App\Car $car
  */
 class Brand extends Model
 {

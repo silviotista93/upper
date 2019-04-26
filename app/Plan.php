@@ -27,6 +27,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Plan wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Plan whereTime($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Plan whereUpdatedAt($value)
+ * @property-read \App\Subscription $subscription
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Wash_type[] $wash_type
  */
 class Plan extends Model
 {
