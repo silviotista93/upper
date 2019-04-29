@@ -77,8 +77,8 @@ class AuthController extends Controller
     }
 
     public function user(Request $request)
-    {
-        return response()->json(['user' => $request->user()]);
+    {   $userLogin = User::where('id',$request->user()->id)->with('socialAcounts')->first();
+        return response()->json(['user' => $userLogin]);
     }
 
 
