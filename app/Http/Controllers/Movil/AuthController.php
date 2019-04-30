@@ -41,6 +41,26 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Successfully created user!'], 201);
     }
+
+    public function updatePassword (Request $request){
+        if ( $request->filled('password')) {
+            $this->validate($request, [
+                'password' => 'confirmed|min:8',
+            ]);
+            $password = $request->get('password');
+            $newpassword = bcrypt($password);
+            $user = User::where('id',$request->id)->update([
+                'password' => $newpassword
+            ]);
+            return response()->json([
+                'message' => 'Successfully password update!'], 201);
+        } else {
+            return response()->json([
+                'error' => 'there are no changes'], 201);
+        }
+
+    }
+
     public function login(Request $request)
     {
         $request->validate([
@@ -77,8 +97,8 @@ class AuthController extends Controller
     }
 
     public function user(Request $request)
-    {
-        return response()->json(['user' => $request->user()]);
+    {   $userLogin = User::where('id',$request->user()->id)->with('socialAcounts')->first();
+        return response()->json(['user' => $userLogin]);
     }
 
 

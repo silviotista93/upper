@@ -25,6 +25,7 @@ Route::group(['prefix' => 'auth', 'namespace'=>'Movil'], function () {
     Route::post('login-facebook', 'AuthController@loginFacebook');
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
+    Route::post('update-password', 'AuthController@updatePassword');
 
     Route::group(['middleware' => 'auth:api'], function() {
         Route::get('logout', 'AuthController@logout');
