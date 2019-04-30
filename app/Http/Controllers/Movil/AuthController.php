@@ -56,7 +56,7 @@ class AuthController extends Controller
                 'message' => 'Successfully password update!'], 201);
         } else {
             return response()->json([
-                'message' => 'there are no changes'], 201);
+                'error' => 'there are no changes'], 201);
         }
 
     }
