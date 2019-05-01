@@ -92,6 +92,23 @@ class User extends Authenticatable
         return 'slug';
     }
 
+    public function setNameAttribute($valor){
+        $this->name = ucfirst($valor);
+    }
+
+    public function getNameAttribute($valor){
+        return ucwords($valor);
+    }
+
+    public function setLast_NameAttribute($valor){
+        $this->last_name = ucfirst($valor);
+    }
+
+    public function getLast_NameAttribute($valor){
+        return ucwords($valor);
+    }
+
+
     public function roles(){
         return $this->belongsToMany(Role::class,'roles_users','users_id','roles_id');
     }
