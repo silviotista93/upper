@@ -81,7 +81,6 @@ class UserController extends Controller
             'name' => ucfirst($request->name),
             'last_name' => ucfirst($request->last_name),
             'slug' => Str::slug(ucfirst($request->name) . mt_rand(1,10000), '-'),
-            'email' => strtolower($request->email),
             'phone_1' => $request->phone_1,
             'phone_2' => $request->phone_2,
         ]);
