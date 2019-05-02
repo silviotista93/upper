@@ -25,11 +25,11 @@ class AuthController extends Controller
 
         ]);
         $user = new User([
-            'name'     => $request->name,
-            'last_name'     => $request->last_name,
-            'email'    => $request->email,
+            'name'     => ucfirst($request->name),
+            'last_name'     => ucfirst($request->last_name),
+            'email'    => strtolower($request->email),
             'avatar' => '/movil/img/perfil.jpg',
-            'slug' => Str::slug($request->name . mt_rand(1,10000), '-'),
+            'slug' => Str::slug(ucfirst($request->name) . mt_rand(1,10000), '-'),
             'password' => $pass,
             'phone_1' => $request->phone_1,
 
