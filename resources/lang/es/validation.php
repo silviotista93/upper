@@ -154,7 +154,7 @@ return [
         'city'                  => 'ciudad',
         'country'               => 'país',
         'address'               => 'dirección',
-        'phone'                 => 'teléfono',
+        'phone_1'                 => 'teléfono 1',
         'mobile'                => 'móvil',
         'age'                   => 'edad',
         'sex'                   => 'sexo',

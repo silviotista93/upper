@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -70,6 +71,9 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
+        if($request){
+
+        
         $this->validate($request, [
             'name' => 'required',
             'last_name' => 'required',
@@ -84,8 +88,31 @@ class UserController extends Controller
             'phone_1' => $request->phone_1,
             'phone_2' => $request->phone_2,
         ]);
+
+        $userToken = User::where('id', $request->id)->first();
+    
+        $tokenResult =$userToken->createToken('Personal Access Token');
+        $token = $tokenResult->token;
+        if ($request->remember_me) {
+            $token->expires_at = Carbon::now()->addWeeks(1);
+        }
+        $token->save();
         return response()->json([
-            'message' => 'Successfully update user!'], 201);
+            'access_token' => $tokenResult->accessToken,
+            'token_type'   => 'Bearer',
+            'expires_at'   => Carbon::parse(
+                $tokenResult->token->expires_at)
+                ->toDateTimeString(),
+            'message' => '¡Actualizacion exitosa!'
+            ],201);
+        }
+        else {
+            return response()->json([
+                'error' => 'Usuario no actualizado'], 201);
+        }
+
+        // return response()->json([
+        //     'message' => 'Successfully update user!'], 201);
     }
 
     /**
