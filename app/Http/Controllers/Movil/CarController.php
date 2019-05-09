@@ -15,11 +15,8 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        dd($request);
-        $car = Car::whereHas('clients', function($q) use ($request) {
-            $q->where('user_id', '=', $request->user()->id);
-        })->get();
-        return $car;
+        $cars = Car::where('user_id', $request->user()->id)->get();
+        return response()->json(['cars' => $cars]);
     }
 
     /**

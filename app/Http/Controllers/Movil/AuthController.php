@@ -6,6 +6,7 @@ use App\Mail\NewClienteUpper;
 use App\UserSocialAccount;
 use Illuminate\Http\Request;
 use App\User;
+use App\Car;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Controllers\Controller;
@@ -59,42 +60,7 @@ class AuthController extends Controller
             'message' => 'Successfully created user!'], 201);
     }
 
-    public function updatePassword (Request $request){
-        if ( $request->filled('password')) {
-            $this->validate($request, [
-                'password' => 'confirmed|min:8',
-            ]);
-            $password = $request->get('password');
-            $newpassword = bcrypt($password);
-            $user = User::where('id',$request->id)->update([
-                'password' => $newpassword
-
-            ]);
-
-            $userToken = User::where('id', $request->id)->first();
     
-            $tokenResult = $userToken->createToken('Personal Access Token');
-            $token = $tokenResult->token;
-            if ($request->remember_me) {
-                $token->expires_at = Carbon::now()->addWeeks(1);
-            }
-            $token->save();
-            return response()->json([
-                'access_token' => $tokenResult->accessToken,
-                'token_type'   => 'Bearer',
-                'expires_at'   => Carbon::parse(
-                    $tokenResult->token->expires_at)
-                    ->toDateTimeString(),
-                'message' => 'Contraseña actualizada'
-                ],201);
-            
-        } else {
-            return response()->json([
-                'error' => 'Contraseña no actualizada'], 201);
-        }
-
-    }
-
     
 
     public function login(Request $request)
