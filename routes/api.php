@@ -30,10 +30,11 @@ Route::group(['prefix' => 'auth', 'namespace'=>'Movil'], function () {
     Route::group(['middleware' => 'auth:api'], function() {
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
+        Route::get('user-roles', 'AuthController@userRol');
     });
 });
 
 Route::group(['prefix' => 'profile', 'namespace'=>'Movil'], function () {
-    Route::post('update', 'UserController@update');
+    Route::put('update', 'UserController@update');
 });
 Route::get('/test','Movil\CarController@index');

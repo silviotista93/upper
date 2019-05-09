@@ -133,11 +133,14 @@ class AuthController extends Controller
     }
 
     public function user(Request $request)
-    {   $userLogin = User::where('id',$request->user()->id)->with('socialAcounts')->first();
+    {   $userLogin = User::where('id',$request->user()->id)->with('socialAcounts', 'roles')->first();
         return response()->json(['user' => $userLogin]);
     }
 
-
+    public function userRol (Request $request){
+        $userRol = \DB::table('roles_users')->where('users_id', $request->user()->id)->first();
+        return response()->json(['roles' => $userRol]);
+    }
     public function loginFacebook (Request $request)
     {
         $user = null; //Declaramos la variable user null para despues usarla y validar que los datos del usuarios son null

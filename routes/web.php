@@ -31,9 +31,14 @@ Route::get('/clientes', function (){
       CLIENTE CON SU VEHICULO
  =============================================*/
 Route::get('/cliente-auto', function (){
-    $get = \App\User::where('id',10)->whereHas('roles', function($q) {
+    $get = \App\User::where('id',3)->whereHas('roles', function($q) {
         $q->where('roles_id', '=', 3);
     })->with('car')->get();
+    return $get;
+});
+
+Route::get('/auto', function (){
+    $get = \App\Car::where('user_id', 15)->get();
     return $get;
 });
 
