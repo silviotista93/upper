@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Movil;
 
 use App\Car;
+use App\Brand;
+use App\Color;
+use App\CarType;
+use App\Cilindraje;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class CarController extends Controller
 {
@@ -15,10 +20,54 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $cars = Car::where('user_id', $request->user()->id)->get();
+        $cars = Car::where('user_id', $request->user()->id)->with('color','cilindrajes','car_type','brand')->get();
         return response()->json(['cars' => $cars]);
     }
 
+    // #region Creacion de los autos
+    public function createCar(Request $request)
+    {
+        $request->validate([
+            'board'         => 'required|string',
+            'car_type_id'   => 'required|string',
+            'cilindraje_id' => 'required|string',
+            'color_id'      => 'required|string',
+            'brand_id'      => 'required|string',
+            'user_id'       => 'required|string'
+        ]);
+        $car = new Car([
+            'board'         => strtoupper($request->board),
+            'picture'       => '/storage/cars/b40daba2f22937be7fc1b47899d8e382.jpg',
+            'car_type_id'   => $request->car_type_id,
+            'cilindraje_id' => $request->cilindraje_id,
+            'color_id'      => $request->color_id,
+            'brand_id'      => $request->brand_id,
+            'user_id'       => $request->user_id,
+        ]);
+        $car->save();
+        return response()->json([
+            'car'     => $car,
+            'message' => 'Creado exitosamente!'], 201);
+    }
+    
+    public function getBrands(Request $request){
+        $brands = Brand::all();
+        return response()->json(['brands' => $brands]);
+    }
+
+    public function getColors(Request $request){
+        $colors = Color::all();
+        return response()->json(['colors' => $colors]);
+    }
+    public function getTypeCar(Request $request){
+        $carType = CarType::all();
+        return response()->json(['carTypes' => $carType]);
+    }
+
+    public function getCilindraje(Request $request){
+        $cilindraje = Cilindraje::all();
+        return response()->json(['cilindrajes' => $cilindraje]);
+    }
     /**
      * Show the form for creating a new resource.
      *

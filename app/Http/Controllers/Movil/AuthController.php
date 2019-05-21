@@ -57,7 +57,7 @@ class AuthController extends Controller
 
         \Mail::to($user->email)->send(new NewClienteUpper($user->email,$password));
         return response()->json([
-            'message' => 'Successfully created user!'], 201);
+            'message' => 'Creado exitosamente!'], 201);
     }
 
     

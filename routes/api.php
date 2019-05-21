@@ -42,7 +42,12 @@ Route::group(['prefix' => 'profile', 'namespace'=>'Movil'], function () {
 
 Route::group(['middleware' => 'auth:api','prefix' => 'car', 'namespace'=>'Movil'], function () {
     Route::get('cars', 'CarController@index');
+    Route::post('create-car', 'CarController@createCar');
     Route::get('add-car', 'CarController@store');
+    Route::get('brand', 'CarController@getBrands');
+    Route::get('color', 'CarController@getColors');
+    Route::get('car-type', 'CarController@getTypeCar');
+    Route::get('cilindraje', 'CarController@getCilindraje');
 });
 
 Route::get('/test','Movil\CarController@index');

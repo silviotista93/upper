@@ -42,6 +42,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Car extends Model
 {
+    protected $fillable = [
+        'board', 'picture', 'car_type_id' ,
+        'cilindraje_id', 'brand_id', 'color_id', 'user_id'
+    ];
+
     public function clients(){
         return $this->belongsTo(User::class,'user_id');
     }
@@ -51,15 +56,15 @@ class Car extends Model
     }
 
     public function cilindrajes(){
-        return $this->belongsTo(Cilindraje::class);
+        return $this->belongsTo(Cilindraje::class, 'cilindraje_id');
     }
 
     public function color(){
-        return $this->belongsTo(Color::class);
+        return $this->belongsTo(Color::class, 'color_id');
     }
 
     public function car_type(){
-        return $this->belongsTo(CarType::class);
+        return $this->belongsTo(CarType::class, 'car_type_id');
     }
 
     public function brand(){
