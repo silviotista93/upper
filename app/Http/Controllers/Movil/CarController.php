@@ -29,15 +29,18 @@ class CarController extends Controller
     {
         $request->validate([
             'board'         => 'required|string',
-            'car_type_id'   => 'required|string',
-            'cilindraje_id' => 'required|string',
-            'color_id'      => 'required|string',
-            'brand_id'      => 'required|string',
-            'user_id'       => 'required|string'
+            'picture'       => 'required',
+            'car_type_id'   => 'required',
+            'cilindraje_id' => 'required',
+            'color_id'      => 'required',
+            'brand_id'      => 'required',
+            'user_id'       => 'required'
         ]);
+
+        $path = $request->file('picture')->store('cars');   
         $car = new Car([
             'board'         => strtoupper($request->board),
-            'picture'       => '/storage/cars/b40daba2f22937be7fc1b47899d8e382.jpg',
+            'picture'       => '/storage/'. $path,
             'car_type_id'   => $request->car_type_id,
             'cilindraje_id' => $request->cilindraje_id,
             'color_id'      => $request->color_id,
@@ -49,7 +52,7 @@ class CarController extends Controller
             'car'     => $car,
             'message' => 'Creado exitosamente!'], 201);
     }
-    
+       
     public function getBrands(Request $request){
         $brands = Brand::all();
         return response()->json(['brands' => $brands]);
