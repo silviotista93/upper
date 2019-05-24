@@ -24,8 +24,6 @@ class CreateOrdersTable extends Migration
             $table->text('description')->nullable();
             $table->unsignedInteger('subscription_cars_id');
             $table->foreign('subscription_cars_id')->references('id')->on('car_subscriptions');
-            $table->unsignedInteger('plan_type_washes_id');
-            $table->foreign('plan_type_washes_id')->references('id')->on('plan_type_washes');
             $table->unsignedInteger('washer_id');
             $table->foreign('washer_id')->references('id')->on('washers');
             $table->string('address');

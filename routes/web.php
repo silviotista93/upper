@@ -34,7 +34,7 @@ Route::get('/clientes', function (){
 Route::get('/cliente-auto', function (){
     $get = \App\User::where('id',3)->whereHas('roles', function($q) {
         $q->where('roles_id', '=', 3);
-    })->with('car')->get();
+    })->with('car', 'car.subscription.plans.wash_type')->get();
     return $get;
 });
 
