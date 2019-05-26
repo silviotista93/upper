@@ -42,6 +42,7 @@ Route::group(['prefix' => 'profile', 'namespace'=>'Movil'], function () {
 
 Route::group(['middleware' => 'auth:api','prefix' => 'car', 'namespace'=>'Movil'], function () {
     Route::get('cars', 'CarController@index');
+    Route::get('cars-plans', 'CarController@getCarPlans');
     Route::post('create-car', 'CarController@createCar');
     Route::get('add-car', 'CarController@store');
     Route::get('brand', 'CarController@getBrands');

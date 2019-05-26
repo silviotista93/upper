@@ -82,7 +82,8 @@ class AuthController extends Controller
     }
 
     public function user(Request $request)
-    {   $userLogin = User::where('id',$request->user()->id)->with('socialAcounts', 'roles')->first();
+    {
+        $userLogin = User::where('id',$request->user()->id)->with('socialAcounts', 'roles')->first();
         return response()->json(['user' => $userLogin]);
     }
 

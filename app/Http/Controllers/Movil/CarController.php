@@ -71,6 +71,11 @@ class CarController extends Controller
         $cilindraje = Cilindraje::all();
         return response()->json(['cilindrajes' => $cilindraje]);
     }
+
+    public function getCarPlans(Request $request){
+        $cars = Car::where('user_id', $request->user()->id)->with('color','cilindrajes','car_type','brand','subscription.plans.wash_type')->get();
+        return response()->json(['cars' => $cars]);
+    }
     /**
      * Show the form for creating a new resource.
      *

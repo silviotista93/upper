@@ -32,15 +32,15 @@ Route::get('/clientes', function (){
       CLIENTE CON SU VEHICULO
  =============================================*/
 Route::get('/cliente-auto', function (){
-    $get = \App\User::where('id',3)->whereHas('roles', function($q) {
+    $get = \App\User::where('id',7)->whereHas('roles', function($q) {
         $q->where('roles_id', '=', 3);
-    })->with('car', 'car.subscription.plans.wash_type')->get();
+    })->with('socialAcounts','roles','car', 'car.subscription.plans.wash_type')->get();
     return $get;
 });
 
 Route::get('/auto', function (){
-    $get = \App\Car::where('user_id', 15)->get();
-    return $get;
+    $cars = \App\Car::where('user_id', 2)->with('subscription.plans.wash_type')->get();
+    return response()->json(['cars' => $cars]);
 });
 
 /*=============================================
