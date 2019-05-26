@@ -20,13 +20,13 @@ class AuthController extends Controller
         $password = trim(Str::random(8));
         $pass = bcrypt($password);
         $request->validate([
-            'name'     => 'required|string',
+            'names'     => 'required|string',
             'last_name' => 'required|string',
             'email'   => 'required|string|email|unique:users',
 
         ]);
         $user = new User([
-            'name'     => ucfirst($request->name),
+            'names'     => ucfirst($request->name),
             'last_name'     => ucfirst($request->last_name),
             'email'    => strtolower($request->email),
             'avatar' => '/movil/img/perfil.jpg',
@@ -43,8 +43,8 @@ class AuthController extends Controller
             'message' => 'Creado exitosamente!'], 201);
     }
 
-    
-    
+
+
 
     public function login(Request $request)
     {
@@ -102,7 +102,7 @@ class AuthController extends Controller
         } else {
 
                 $user = new User([
-                    'name' => $request->name,
+                    'names' => $request->name,
                     'email' => $email,
                     'slug' => Str::slug($request->name. mt_rand(1,10000), '-'),
                     'avatar' => $request->avatar,
