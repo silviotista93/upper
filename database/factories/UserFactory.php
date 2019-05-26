@@ -20,7 +20,7 @@ $factory->define(User::class, function (Faker $faker) {
     $last_name = $faker->lastName;
     $state = $faker->randomElement([\App\User::ACTIVE, \App\User::INACTIVE]);
     return [
-        'names' => $name,
+        'name' => $name,
         'last_name' => $last_name,
         'email' => $faker->unique()->safeEmail,
         'avatar' => "/storage/users/".\Faker\Provider\Image::image(storage_path() . '/app/public/users', 300, 300, 'people', false),

@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
         =============================================*/
 
         factory(\App\User::class, 1)->create([
-            'names' => 'admin',
+            'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('secret'),
             'slug' => Str::slug('admin' . mt_rand(1, 10000), '-')
