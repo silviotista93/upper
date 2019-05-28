@@ -42,7 +42,9 @@ Route::get('/auto', function (){
     $cars = \App\Car::where('user_id', 2)->with('subscription.plans.wash_type')->get();
     return response()->json(['cars' => $cars]);
 });
+Route::get('tipo-lavado', function (){
 
+});
 /*=============================================
 
  =============================================*/

@@ -23,10 +23,9 @@ class AuthController extends Controller
             'names'     => 'required|string',
             'last_name' => 'required|string',
             'email'   => 'required|string|email|unique:users',
-
         ]);
         $user = new User([
-            'names'     => ucfirst($request->name),
+            'names'     => ucfirst($request->names),
             'last_name'     => ucfirst($request->last_name),
             'email'    => strtolower($request->email),
             'avatar' => '/movil/img/perfil.jpg',
@@ -42,9 +41,6 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Creado exitosamente!'], 201);
     }
-
-
-
 
     public function login(Request $request)
     {
@@ -102,7 +98,7 @@ class AuthController extends Controller
         } else {
 
                 $user = new User([
-                    'names' => $request->name,
+                    'names' => $request->names,
                     'email' => $email,
                     'slug' => Str::slug($request->name. mt_rand(1,10000), '-'),
                     'avatar' => $request->avatar,
