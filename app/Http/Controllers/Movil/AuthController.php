@@ -100,7 +100,7 @@ class AuthController extends Controller
                 $user = new User([
                     'names' => $request->names,
                     'email' => $email,
-                    'slug' => Str::slug($request->name. mt_rand(1,10000), '-'),
+                    'slug' => Str::slug($request->names. mt_rand(1,10000), '-'),
                     'avatar' => $request->avatar,
                 ]);
                 $user->save();
