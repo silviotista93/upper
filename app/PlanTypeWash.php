@@ -26,5 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PlanTypeWash extends Model
 {
-    //
+    public function washType(){
+        return $this->hasOne(Wash_type::class,'plan_type_washes');
+    }
 }

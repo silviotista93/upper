@@ -43,6 +43,7 @@ Route::group(['prefix' => 'profile', 'namespace'=>'Movil'], function () {
 Route::group(['middleware' => 'auth:api','prefix' => 'car', 'namespace'=>'Movil'], function () {
     Route::get('cars', 'CarController@index');
     Route::get('cars-plans', 'CarController@getCarPlans');
+    Route::post('plan-type-washes', 'CarController@getPlanTypeWashes');
     Route::post('create-car', 'CarController@createCar');
     Route::get('add-car', 'CarController@store');
     Route::get('brand', 'CarController@getBrands');
@@ -52,6 +53,7 @@ Route::group(['middleware' => 'auth:api','prefix' => 'car', 'namespace'=>'Movil'
 });
 Route::group(['middleware' => 'auth:api','prefix' => 'order', 'namespace'=>'Movil'], function () {
     Route::post('create-order', 'OrdenController@store');
+    Route::get('index-client-order', 'OrdenController@index');
 });
 
 Route::get('/test','Movil\CarController@index');

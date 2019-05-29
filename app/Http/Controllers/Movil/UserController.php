@@ -116,6 +116,7 @@ class UserController extends Controller
     }
 
     public function updatePassword (Request $request){
+        dd($request);
         if ( $request->filled('password')) {
             $this->validate($request, [
                 'password' => 'confirmed|min:8',
