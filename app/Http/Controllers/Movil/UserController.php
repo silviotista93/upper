@@ -82,9 +82,9 @@ class UserController extends Controller
         ]);
 
         $updateProfile = User::where('id',$request->id)->update([
-            'names' => ucfirst($request->name),
+            'names' => ucfirst($request->names),
             'last_name' => ucfirst($request->last_name),
-            'slug' => Str::slug(ucfirst($request->name) . mt_rand(1,10000), '-'),
+            'slug' => Str::slug(ucfirst($request->names) . mt_rand(1,10000), '-'),
             'phone_1' => $request->phone_1,
             'phone_2' => $request->phone_2,
         ]);
@@ -116,7 +116,7 @@ class UserController extends Controller
     }
 
     public function updatePassword (Request $request){
-        dd($request);
+        
         if ( $request->filled('password')) {
             $this->validate($request, [
                 'password' => 'confirmed|min:8',
