@@ -38,7 +38,7 @@ class CarController extends Controller
             'brand_id'      => 'required',
             'user_id'       => 'required'
         ]);
-            echo(json_encode($request->file('picture')));
+
          $path = $request->file('picture')->store('cars');   
 
         $car = new Car([
