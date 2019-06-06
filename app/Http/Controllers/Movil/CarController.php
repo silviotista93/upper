@@ -62,7 +62,7 @@ class CarController extends Controller
         $path = $request->file('picture')->store('cars');  
         
         return response()->json([
-            'foto'     => $path,
+            'foto'     => '/storage/'. $path,
             'message' => 'Creado exitosamente!'], 201);
     }
        
