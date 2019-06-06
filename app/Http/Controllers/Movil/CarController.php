@@ -63,7 +63,7 @@ class CarController extends Controller
         $path = Storage::putFile('didier', $request->file('picture'));
         
         return response()->json([
-            'foto'     => '/storage/'. $path,
+            'foto'     => $path,
             'message' => 'Creado exitosamente!'], 201);
     }
        
