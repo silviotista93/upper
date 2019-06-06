@@ -59,7 +59,8 @@ class CarController extends Controller
     public function uploadPicture(Request $request){
        
       
-        $path = $request->file('picture')->store('didier');  
+        // $path = $request->file('picture')->store('didier');  
+        $path = Storage::putFile('didier', $request->file('picture'));
         
         return response()->json([
             'foto'     => '/storage/'. $path,
