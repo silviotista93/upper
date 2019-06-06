@@ -9,6 +9,7 @@ use App\CarType;
 use App\Cilindraje;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class CarController extends Controller
@@ -29,15 +30,16 @@ class CarController extends Controller
     {
         $request->validate([
             'board'         => 'required|string',
-            'picture'       => 'required',
             'car_type_id'   => 'required',
+            // 'picture'       => 'required|mimes:jpeg,png,jpg,gif,svg',
             'cilindraje_id' => 'required',
             'color_id'      => 'required',
             'brand_id'      => 'required',
             'user_id'       => 'required'
         ]);
+            echo(json_encode($request->file('picture')));
+         $path = $request->file('picture')->store('cars');   
 
-        $path = $request->file('picture')->store('cars');   
         $car = new Car([
             'board'         => strtoupper($request->board),
             'picture'       => '/storage/'. $path,
@@ -50,6 +52,16 @@ class CarController extends Controller
         $car->save();
         return response()->json([
             'car'     => $car,
+            'message' => 'Creado exitosamente!'], 201);
+    }
+
+    public function uploadPicture(Request $request){
+       
+      
+        $path = $request->file('picture')->store('cars');  
+        
+        return response()->json([
+            'foto'     => $path,
             'message' => 'Creado exitosamente!'], 201);
     }
        
