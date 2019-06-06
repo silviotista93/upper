@@ -33,6 +33,10 @@ class Subscription extends Model
     }
 
     public function plans(){
-        return $this->belongsTo(Plan::class);
+        return $this->belongsTo(Plan::class,'plan_id');
+    }
+
+    public function order(){
+        return $this->hasOne(Order::class);
     }
 }

@@ -24,11 +24,11 @@ class CreateOrdersTable extends Migration
             $table->text('description')->nullable();
             $table->unsignedInteger('subscription_cars_id');
             $table->foreign('subscription_cars_id')->references('id')->on('car_subscriptions');
-            $table->unsignedInteger('plan_type_washes_id');
-            $table->foreign('plan_type_washes_id')->references('id')->on('plan_type_washes');
-            $table->unsignedInteger('washer_id');
+            $table->unsignedInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedInteger('washer_id')->nullable();
             $table->foreign('washer_id')->references('id')->on('washers');
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }

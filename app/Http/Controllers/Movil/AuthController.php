@@ -20,13 +20,12 @@ class AuthController extends Controller
         $password = trim(Str::random(8));
         $pass = bcrypt($password);
         $request->validate([
-            'name'     => 'required|string',
+            'names'     => 'required|string',
             'last_name' => 'required|string',
             'email'   => 'required|string|email|unique:users',
-
         ]);
         $user = new User([
-            'name'     => ucfirst($request->name),
+            'names'     => ucfirst($request->names),
             'last_name'     => ucfirst($request->last_name),
             'email'    => strtolower($request->email),
             'avatar' => '/movil/img/perfil.jpg',
@@ -42,9 +41,6 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Creado exitosamente!'], 201);
     }
-
-    
-    
 
     public function login(Request $request)
     {
@@ -82,7 +78,8 @@ class AuthController extends Controller
     }
 
     public function user(Request $request)
-    {   $userLogin = User::where('id',$request->user()->id)->with('socialAcounts', 'roles')->first();
+    {
+        $userLogin = User::where('id',$request->user()->id)->with('socialAcounts', 'roles')->first();
         return response()->json(['user' => $userLogin]);
     }
 
@@ -101,9 +98,9 @@ class AuthController extends Controller
         } else {
 
                 $user = new User([
-                    'name' => $request->name,
+                    'names' => $request->names,
                     'email' => $email,
-                    'slug' => Str::slug($request->name. mt_rand(1,10000), '-'),
+                    'slug' => Str::slug($request->names. mt_rand(1,10000), '-'),
                     'avatar' => $request->avatar,
                 ]);
                 $user->save();

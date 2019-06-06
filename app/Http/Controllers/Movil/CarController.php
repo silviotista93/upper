@@ -7,6 +7,7 @@ use App\Brand;
 use App\Color;
 use App\CarType;
 use App\Cilindraje;
+use App\PlanTypeWash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -82,6 +83,16 @@ class CarController extends Controller
     public function getCilindraje(Request $request){
         $cilindraje = Cilindraje::all();
         return response()->json(['cilindrajes' => $cilindraje]);
+    }
+
+    public function getCarPlans(Request $request){
+        $cars = Car::where('user_id', $request->user()->id)->with('color','cilindrajes','car_type','brand','subscription.plans.wash_type')->get();
+        return response()->json(['cars' => $cars]);
+    }
+
+    public function getPlanTypeWashes(Request $request){
+        $get = PlanTypeWash::where('plan_id', $request->id )->get();
+        return response()->json(['plan-type-washes' => $get]);
     }
     /**
      * Show the form for creating a new resource.

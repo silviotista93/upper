@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Movil;
 
+use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,9 +13,10 @@ class OrdenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $orden = Order::where('user_id', $request->user()->id)->with('suscription.plans.wash_type','planTypeWash')->get();
+        return response()->json(['orders' => $orden]);
     }
 
     /**
@@ -35,7 +37,19 @@ class OrdenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = new Order([
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'subscription_cars_id' => $request->subscription,
+            'address' => $request->address,
+            'user_id' => $request->user_id
+
+        ]);
+        $order->save();
+        $order->planTypeWash()->attach($request->typesWash);
+        return response()->json([
+            'order'     => $order,
+            'message' => 'Orden creada exitosamente!'], 201);
     }
 
     /**

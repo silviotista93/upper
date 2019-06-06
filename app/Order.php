@@ -41,4 +41,20 @@ class Order extends Model
     const PEDIDO = 1;
     const REALIZADO = 2;
     const CANCELADO = 3;
+
+    protected $fillable = [
+        'latitude' ,'longitude', 'status', 'sign','description','subscription_cars_id','washer_id','address','user_id'
+    ];
+
+    public function planTypeWash(){
+        return $this->belongsToMany(Wash_type::class,'orden__plan__type__washes','order_id','plan_type_washes_id');
+    }
+
+    public function car(){
+        return $this->belongsToMany(Car::class);
+    }
+
+    public function suscription(){
+        return $this->belongsTo(Subscription::class,'subscription_cars_id');
+    }
 }

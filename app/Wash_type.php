@@ -30,4 +30,8 @@ class Wash_type extends Model
     public function plan(){
         return $this->belongsToMany(Plan::class,'plan_type_washes','type_wash_id','plan_id');
     }
+
+    public function order(){
+        return $this->belongsToMany(order::class);
+    }
 }
