@@ -66,8 +66,10 @@ class CarController extends Controller
         $path = str_replace("/","\\",$path);
         
         return response()->json([
-            'picture'     => $path,
-            'message' => 'Creado exitosamente!'], 201);
+             $path,
+            // 'picture'     => $path,
+            // 'message' => 'Creado exitosamente!'
+        ], 201);
     }
        
     public function getBrands(Request $request){
