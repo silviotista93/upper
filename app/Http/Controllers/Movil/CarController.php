@@ -51,7 +51,7 @@ class CarController extends Controller
             'user_id'       => $request->user_id,
         ]);
         $car->save();
-        
+
         return response()->json([
             'car'     => $car,
             'message' => 'Creado exitosamente!'], 201);
@@ -67,11 +67,11 @@ class CarController extends Controller
         $path = str_replace("/","\\",$path);
         
         // json( $path = array());
-        return response()->json([ $path ], 201);
+        // return response()->json([ $path ], 201);
         // return response()->json([
         //     'picture'     =>  $path], 201);
 
-        // return $path;
+        return $path;
         // return response($path, 200);
     }
        
