@@ -65,11 +65,13 @@ class CarController extends Controller
         $path = $request->file('picture')->store('didier');  
         $path = str_replace("/","\\",$path);
         
-        return response()->json([
-             $path,
-            // 'picture'     => $path,
-            // 'message' => 'Creado exitosamente!'
-        ], 201);
+        // return response()->json([
+        //      $path,
+        //     // 'picture'     => $path,
+        //     // 'message' => 'Creado exitosamente!'
+        // ], 201);
+
+        return $path;
     }
        
     public function getBrands(Request $request){
