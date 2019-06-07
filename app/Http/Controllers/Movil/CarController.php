@@ -62,7 +62,7 @@ class CarController extends Controller
         // $path = $request->file('picture')->store('didier');  
         $path = Storage::putFile('didier', $request->file('picture'));
         // $link=str_replace("\\\\","/",$link);
-        $path=str_replace("\\","/",$path);
+        $path=str_replace("\\\\","/",$path);
         
         return response()->json([
             'foto'     => $path,
