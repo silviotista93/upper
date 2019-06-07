@@ -39,11 +39,11 @@ class CarController extends Controller
             'user_id'       => 'required'
         ]);
 
-         $path = $request->file('picture')->store('didier1');   
+        //  $picture = $request->car_type_id;
 
         $car = new Car([
             'board'         => strtoupper($request->board),
-            'picture'       => '/storage/'. $path,
+            'picture'       => '/storage/'. $request->picture,
             'car_type_id'   => $request->car_type_id,
             'cilindraje_id' => $request->cilindraje_id,
             'color_id'      => $request->color_id,
@@ -51,6 +51,7 @@ class CarController extends Controller
             'user_id'       => $request->user_id,
         ]);
         $car->save();
+        
         return response()->json([
             'car'     => $car,
             'message' => 'Creado exitosamente!'], 201);
