@@ -10,6 +10,7 @@ use App\Cilindraje;
 use App\PlanTypeWash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class CarController extends Controller
@@ -58,8 +59,8 @@ class CarController extends Controller
     public function uploadPicture(Request $request){
        
       
-        $path = $request->file('picture')->store('didier');  
-        // $path = Storage::putFile('didier', $request->file('picture'));
+        // $path = $request->file('picture')->store('didier');  
+        $path = Storage::putFile('didier', $request->file('picture'));
         
         return response()->json([
             'foto'     => $path,
