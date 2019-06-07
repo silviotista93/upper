@@ -66,8 +66,9 @@ class CarController extends Controller
         $path = str_replace("/","\\",$path);
         
         // json( $path = array());
-        return response()->json([
-            'picture'     =>  $path], 201);
+        return response()->json([ $path ], 201);
+        // return response()->json([
+        //     'picture'     =>  $path], 201);
 
         // return $path;
         // return response($path, 200);
