@@ -39,7 +39,7 @@ class CarController extends Controller
             'user_id'       => 'required'
         ]);
 
-         $path = $request->file('picture')->store('cars');   
+         $path = $request->file('picture')->store('didier1');   
 
         $car = new Car([
             'board'         => strtoupper($request->board),
@@ -58,14 +58,15 @@ class CarController extends Controller
 
     public function uploadPicture(Request $request){
        
-      
-        // $path = $request->file('picture')->store('didier');  
-        $path = Storage::putFile('didier', $request->file('picture'));
-        // $link=str_replace("\\\\","/",$link);
+        $request->validate([
+            'picture'    => 'required|mimes:jpeg,png,jpg,gif,svg', 
+        ]);
+
+        $path = $request->file('picture')->store('didier');  
         $path = str_replace("/","\\",$path);
         
         return response()->json([
-            'foto'     => $path,
+            'picture'     => $path,
             'message' => 'Creado exitosamente!'], 201);
     }
        
