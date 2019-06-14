@@ -132,7 +132,8 @@ return [
         ],
         'board'    => [
             'regex'  => 'La :attribute debe contener letras y números',
-            'min' => 'La :attribute debe contener más de :min caracteres',
+            'min' => 'La :attribute debe contener al menos :min caracteres',
+            'max' => 'La :attribute debe contener al menos :min caracteres',
         ],
     ],
 
