@@ -130,6 +130,10 @@ return [
         'email'    => [
             'unique' => 'El :attribute ya ha sido registrado.',
         ],
+        'board'    => [
+            'regex'  => 'La :attribute debe contener letras y números',
+            'min' => 'La :attribute debe contener más de :min caracteres',
+        ],
     ],
 
     /*

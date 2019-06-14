@@ -30,7 +30,7 @@ class CarController extends Controller
     public function createCar(Request $request)
     {
         $request->validate([
-            'board'         => 'required|string',
+            'board'         => 'required|string|min:6|max:6|regex:/^[ A-Za-z0-9]+$/',
             'car_type_id'   => 'required',
             // 'picture'       => 'required|mimes:jpeg,png,jpg,gif,svg',
             'cilindraje_id' => 'required',
