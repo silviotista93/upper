@@ -96,11 +96,10 @@ class AuthController extends Controller
         if ($check) {
             $user = $check;
         } else {
-
                 $user = new User([
-                    'names' => $request->names,
+                    'names' => $request->name,
                     'email' => $email,
-                    'slug' => Str::slug($request->names. mt_rand(1,10000), '-'),
+                    'slug' => Str::slug($request->name. mt_rand(1,10000), '-'),
                     'avatar' => $request->avatar,
                 ]);
                 $user->save();
