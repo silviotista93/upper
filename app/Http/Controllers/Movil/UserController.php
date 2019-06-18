@@ -157,24 +157,19 @@ class UserController extends Controller
         $request->validate([
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-
-        $user = User::where('id', $request->id)->first();
         
-        // $avatarName = $user->id.'_avatar'.time().'.'.request()->avatar->getClientOriginalExtension();
-        $avatarName = $user->id.'_avatar'.time().'.'.request()->avatar;
-
         // $request->avatar->storeAs('avatars',$avatarName);
+        
+        $user = User::where('id',$request->user()->id)->first();
+        $avatarName = $user->id.'_avatar'.time().'.'.request()->avatar;
         $path = $request->file('avatar')->store('avatars/'.$user->id);  
 
         $user->avatar = '/storage/'.$path;
         $user->save();
-
+        
         return response()->json([
             'user' =>  $user,
             'message' => '¡Avatar actualizado!'],201);
-        // return back()
-        //     ->with('success','You have successfully upload image.');
-
     }
 
     /**

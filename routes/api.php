@@ -32,13 +32,14 @@ Route::group(['prefix' => 'auth', 'namespace'=>'Movil'], function () {
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
         Route::get('user-roles', 'AuthController@userRol');
+        Route::post('update-avatar', 'UserController@updateAvatar');
     });
 });
 
 Route::group(['prefix' => 'profile', 'namespace'=>'Movil'], function () {
     Route::post('update', 'UserController@update');
     Route::post('update-password', 'UserController@updatePassword');
-    Route::post('update-avatar', 'UserController@updateAvatar');
+    // Route::post('update-avatar', 'UserController@updateAvatar');
 });
 
 Route::group(['middleware' => 'auth:api','prefix' => 'car', 'namespace'=>'Movil'], function () {
