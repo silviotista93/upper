@@ -38,6 +38,7 @@ Route::group(['prefix' => 'auth', 'namespace'=>'Movil'], function () {
 Route::group(['prefix' => 'profile', 'namespace'=>'Movil'], function () {
     Route::post('update', 'UserController@update');
     Route::post('update-password', 'UserController@updatePassword');
+    Route::post('update-avatar', 'UserController@updateAvatar');
 });
 
 Route::group(['middleware' => 'auth:api','prefix' => 'car', 'namespace'=>'Movil'], function () {
