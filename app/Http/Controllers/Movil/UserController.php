@@ -152,53 +152,26 @@ class UserController extends Controller
 
     }
 
-    public function updatePicture (Request $request){
-        $updateProfile = User::where('id',$request->id)->update([
-            'avatar' => $request->avatar,
-        ]);
-
-        $data=Course::findOrFail($request->id);  
-
-
-        if ($request->hasFile('image'))
-            {
-                $file = $request->file('image');
-                $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString()); 
-                $name = $timestamp. '-' .$file->getClientOriginalName();
-                $data->image = $name;
-                $file->move(public_path().'/images/', $name);                       
-            }   
-                 $data->course_code = $request['course_code'];
-                 $data->course_title = $request['course_title'];
-                 $data->course_credit = $request['course_credit'];
-    
-              $data->save();             
-          return redirect('course');
-    }
-
-
     public function updateAvatar(Request $request){
 
         $request->validate([
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        // $user = Auth::user();
         $user = User::where('id', $request->id)->first();
         
         // $avatarName = $user->id.'_avatar'.time().'.'.request()->avatar->getClientOriginalExtension();
         $avatarName = $user->id.'_avatar'.time().'.'.request()->avatar;
 
         // $request->avatar->storeAs('avatars',$avatarName);
-        $path = $request->file('avatar')->store('avatars');  
+        $path = $request->file('avatar')->store('avatars/'.$user->id);  
 
         $user->avatar = '/storage/'.$path;
         $user->save();
 
         return response()->json([
-            $user,
-            'message' => '¡Actualizacion exitosa!'
-            ],201);
+            'user' =>  $user,
+            'message' => '¡Avatar actualizado!'],201);
         // return back()
         //     ->with('success','You have successfully upload image.');
 
