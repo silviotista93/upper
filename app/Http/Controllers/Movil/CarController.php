@@ -111,12 +111,14 @@ class CarController extends Controller
     
 
     public function deleteCar(Request $request){
-        $car = Car::where('id', $request->id)->first();
+        // $car = Car::where('id', $request->id)->first();
+        $car = Car::findOrFail($request->id);   
+        $car->delete();
+        
         $cars = Car::where('user_id', $request->user()->id)->get();
-
-        Car::destroy($request->id);
+        // Car::destroy($request->id);
         return response()->json([
-            "car"       => $cars,
+            "cars"       => $cars,
             "message"   => 'Se eliminó correctamente'
         ], 201);
     }
@@ -184,6 +186,15 @@ class CarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $car = Car::findOrFail($id);
+        // dd($car);
+        $car->delete();
+        
+        $cars = Car::where('user_id', $request->user()->id)->get();
+        return response()->json([
+            "cars"       => $cars,
+            "message"   => 'Se eliminó correctamente'
+        ], 201);
+
     }
 }
