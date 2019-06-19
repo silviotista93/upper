@@ -87,8 +87,8 @@ class AuthController extends Controller
         $userRol = \DB::table('roles_users')->where('users_id', $request->user()->id)->first();
         return response()->json(['roles' => $userRol]);
     }
-    public function loginFacebook (Request $request)
-    {
+
+    public function loginFacebook (Request $request){
         $user = null; //Declaramos la variable user null para despues usarla y validar que los datos del usuarios son null
         $success = true; //$success es para al final del registro dar una alerta de que ha sido un exito
         $email = $request->email; //$email la declaramos para almacenar el email que nos trae facebook
