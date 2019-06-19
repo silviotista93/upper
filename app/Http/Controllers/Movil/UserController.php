@@ -168,8 +168,7 @@ class UserController extends Controller
         $user->save();
         
         return response()->json([
-            'user' =>  $user,
-            'message' => '¡Avatar actualizado!'],201);
+            'user' =>  $user->avatar],201);
     }
 
     /**
