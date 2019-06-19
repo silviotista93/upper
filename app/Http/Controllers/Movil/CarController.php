@@ -8,10 +8,13 @@ use App\Color;
 use App\CarType;
 use App\Cilindraje;
 use App\PlanTypeWash;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Filesystem\Filesystem;
+
 
 class CarController extends Controller
 {
@@ -58,14 +61,21 @@ class CarController extends Controller
     public function uploadPicture(Request $request){
        
         $request->validate([
-            'picture'    => 'required|mimes:jpeg,png,jpg,gif,svg', 
+            'picture'    => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048', 
         ]);
 
-        $path = $request->file('picture')->store('didier');  
+        $user = User::where('id',$request->user()->id)->first();
+
+        $file = new Filesystem;
+        $file->cleanDirectory('storage/cars/'.$user->id);
+
+        $path = $request->file('picture')->store('cars/'.$user->id);  
         $path = str_replace("/","\\",$path);
+
         return $path;
     }
-       
+    
+     #region Marcas, colores, cilindajes...
     public function getBrands(Request $request){
         $brands = Brand::all();
         return response()->json(['brands' => $brands]);
@@ -94,7 +104,9 @@ class CarController extends Controller
         $get = PlanTypeWash::where('plan_id', $request->id )->get();
         return response()->json(['plan-type-washes' => $get]);
     }
-    /**
+     #endregion
+    
+     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

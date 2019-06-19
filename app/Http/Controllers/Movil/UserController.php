@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Filesystem\Filesystem;
 
 class UserController extends Controller
 {
@@ -69,6 +70,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    #region ACTUALIZAR USUARIO
     public function update(Request $request)
     {
         if($request){
@@ -114,7 +116,9 @@ class UserController extends Controller
         // return response()->json([
         //     'message' => 'Successfully update user!'], 201);
     }
+    #endregion
 
+    #region ACTUALIZAR PASSWORD
     public function updatePassword (Request $request){
         
         if ( $request->filled('password')) {
@@ -151,16 +155,18 @@ class UserController extends Controller
         }
 
     }
+    #endregion
 
     public function updateAvatar(Request $request){
 
         $request->validate([
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        
-        // $request->avatar->storeAs('avatars',$avatarName);
-        
         $user = User::where('id',$request->user()->id)->first();
+        
+        $file = new Filesystem;
+        $file->cleanDirectory('storage/avatars/'.$user->id);
+        
         $avatarName = $user->id.'_avatar'.time().'.'.request()->avatar;
         $path = $request->file('avatar')->store('avatars/'.$user->id);  
 
