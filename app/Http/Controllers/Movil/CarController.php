@@ -29,7 +29,7 @@ class CarController extends Controller
         return response()->json(['cars' => $cars]);
     }
 
-    // #region Creacion de los autos
+    #region Creacion de los autos
     public function createCar(Request $request)
     {
         $request->validate([
@@ -57,7 +57,9 @@ class CarController extends Controller
             'car'     => $car,
             'message' => 'Creado exitosamente!'], 201);
     }
+    #endregion
 
+    #region SUBIR FOTO CARRO
     public function uploadPicture(Request $request){
        
         $request->validate([
@@ -66,16 +68,17 @@ class CarController extends Controller
 
         $user = User::where('id',$request->user()->id)->first();
 
-        $file = new Filesystem;
-        $file->cleanDirectory('storage/cars/'.$user->id);
+        // $file = new Filesystem;
+        // $file->cleanDirectory('storage/cars/'.$user->id);
 
         $path = $request->file('picture')->store('cars/'.$user->id);  
         $path = str_replace("/","\\",$path);
 
         return $path;
     }
+    #endregion
     
-     #region Marcas, colores, cilindajes...
+    #region Marcas, colores, cilindajes...
     public function getBrands(Request $request){
         $brands = Brand::all();
         return response()->json(['brands' => $brands]);
@@ -106,6 +109,18 @@ class CarController extends Controller
     }
      #endregion
     
+
+    public function deleteCar(Request $request){
+        $car = Car::where('id', $request->id)->first();
+        $cars = Car::where('user_id', $request->user()->id)->get();
+
+        Car::destroy($request->id);
+        return response()->json([
+            "car"       => $cars,
+            "message"   => 'Se eliminó correctamente'
+        ], 201);
+    }
+
      /**
      * Show the form for creating a new resource.
      *
