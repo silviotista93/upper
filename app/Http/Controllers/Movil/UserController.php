@@ -167,8 +167,7 @@ class UserController extends Controller
         $user->avatar = '/storage/'.$path;
         $user->save();
         
-        return response()->json([
-            $user->avatar],201);
+        return $user->avatar;
     }
 
     /**
