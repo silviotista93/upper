@@ -55,6 +55,8 @@ Route::group(['middleware' => 'auth:api','prefix' => 'car', 'namespace'=>'Movil'
 Route::group(['middleware' => 'auth:api','prefix' => 'order', 'namespace'=>'Movil'], function () {
     Route::post('create-order', 'OrdenController@store');
     Route::get('index-client-order', 'OrdenController@index');
+    Route::get('detail-orden/{id}', 'OrdenController@show');
+    Route::get('detail-car-suscription/{id}', 'OrdenController@car_suscription');
 });
 
 Route::get('/test','Movil\CarController@index');

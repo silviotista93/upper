@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Movil;
 
+use App\CarSubscription;
 use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -60,8 +61,15 @@ class OrdenController extends Controller
      */
     public function show($id)
     {
-        //
+        $orden = Order::where('id', $id )->first();
+        return response()->json(['detail-order' => $orden]);
     }
+    public function  car_suscription($id)
+    {
+        $car_suscription = CarSubscription::where('id', $id )->with('car')->first();
+        return response()->json(['car_suscription' => $car_suscription]);
+    }
+
 
     /**
      * Show the form for editing the specified resource.

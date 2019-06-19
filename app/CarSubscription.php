@@ -24,5 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CarSubscription extends Model
 {
-    //
+    public function car(){
+        return $this->belongsTo(Car::class,'cars_id');
+    }
 }
