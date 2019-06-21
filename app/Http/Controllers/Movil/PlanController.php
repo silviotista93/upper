@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Movil;
 
+use App\Plan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,8 @@ class PlanController extends Controller
      */
     public function index()
     {
-        //
+        $plans = Plan::with('wash_type')->get();
+        return response()->json(['plans' => $plans]);
     }
 
     /**

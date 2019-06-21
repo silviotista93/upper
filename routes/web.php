@@ -53,6 +53,11 @@ Route::get('/orden-carro/{id}', function ($id){
     $orden = \App\Order::where('id', $id)->with('suscription.plans.wash_type','planTypeWash','suscription.car')->get();
     return $orden;
 });
+
+Route::get('plans', function (){
+   $plans =  \App\Plan::with('wash_type')->get();
+   return $plans;
+});
 /*=============================================
 
  =============================================*/
