@@ -41,10 +41,12 @@ class CarController extends Controller
             'brand_id'      => 'required',
             'user_id'       => 'required'
         ]);
+        $user = User::where('id',$request->user()->id)->first();
+        $path = $request->file('picture')->store('cars/'.$user->id);  
 
         $car = new Car([
             'board'         => strtoupper($request->board),
-            'picture'       => '/storage/'. $request->picture,
+            'picture'       => '/storage/'. $path,
             'car_type_id'   => $request->car_type_id,
             'cilindraje_id' => $request->cilindraje_id,
             'color_id'      => $request->color_id,
@@ -109,7 +111,7 @@ class CarController extends Controller
     }
      #endregion
     
-
+    #region Borrar Auto
     public function deleteCar(Request $request){
         $car = Car::findOrFail($request->id);   
         $car->delete();
@@ -120,7 +122,12 @@ class CarController extends Controller
             "message"   => 'Se eliminó correctamente'
         ], 201);
     }
+    #endregion
 
+    public function getCar($id){
+        $Car = Car::where('id', $id )->first();
+        return response()->json(['car' => $Car]);
+    }
      /**
      * Show the form for creating a new resource.
      *
@@ -150,7 +157,7 @@ class CarController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
