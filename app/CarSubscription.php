@@ -27,4 +27,7 @@ class CarSubscription extends Model
     public function car(){
         return $this->belongsTo(Car::class,'cars_id');
     }
+    public function suscriptions(){
+        return $this->belongsTo(Subscription::class,'subscription_id');
+    }
 }

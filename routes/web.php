@@ -58,6 +58,10 @@ Route::get('plans', function (){
    $plans =  \App\Plan::with('wash_type')->get();
    return $plans;
 });
+
+Route::get('suscripciones', function (){
+});
+
 /*=============================================
 
  =============================================*/

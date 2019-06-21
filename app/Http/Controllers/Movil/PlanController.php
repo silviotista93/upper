@@ -48,7 +48,8 @@ class PlanController extends Controller
      */
     public function show($id)
     {
-        //
+        $plan = Plan::where('id', $id)->with('wash_type')->first();
+        return response()->json(['plan' => $plan]);
     }
 
     /**

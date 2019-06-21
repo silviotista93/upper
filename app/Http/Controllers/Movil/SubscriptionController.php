@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Movil;
 
+use App\Car;
+use App\CarSubscription;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,9 +14,12 @@ class SubscriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $suscripciones = CarSubscription::with('car', 'suscriptions.plans')->whereHas('car.clients', function ($query) use ($request){
+            $query->where('id', '=',  $request->user()->id);
+        })->get();
+        return response()->json(['suscripciones' => $suscripciones]);
     }
 
     /**
