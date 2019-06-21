@@ -43,10 +43,12 @@ Route::group(['middleware' => 'auth:api','prefix' => 'profile',  'namespace'=>'M
 
 Route::group(['middleware' => 'auth:api','prefix' => 'car', 'namespace'=>'Movil'], function () {
     Route::get('cars', 'CarController@index');
+    Route::get('car/{id}', 'CarController@getCar');
     Route::get('cars-plans', 'CarController@getCarPlans');
     Route::post('plan-type-washes', 'CarController@getPlanTypeWashes');
     Route::post('create-car', 'CarController@createCar');
     Route::post('upload-picture', 'CarController@uploadPicture');
+    Route::post('delete-car', 'CarController@deleteCar');
     Route::get('add-car', 'CarController@store');
     Route::get('brand', 'CarController@getBrands');
     Route::get('color', 'CarController@getColors');
