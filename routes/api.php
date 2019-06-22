@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth:api','prefix' => 'car', 'namespace'=>'Movil'
     Route::post('create-car', 'CarController@createCar');
     Route::post('upload-picture', 'CarController@uploadPicture');
     Route::post('delete-car', 'CarController@deleteCar');
+    Route::post('update-picture', 'CarController@updatePicture');
     Route::get('add-car', 'CarController@store');
     Route::get('brand', 'CarController@getBrands');
     Route::get('color', 'CarController@getColors');

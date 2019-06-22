@@ -42,11 +42,11 @@ class CarController extends Controller
             'user_id'       => 'required'
         ]);
         $user = User::where('id',$request->user()->id)->first();
-        $path = $request->file('picture')->store('cars/'.$user->id);  
+        // $path = $request->file('picture')->store('cars/'.$user->id);  
 
         $car = new Car([
             'board'         => strtoupper($request->board),
-            'picture'       => '/storage/'. $path,
+            'picture'       => '/storage/'. $request->picture,
             'car_type_id'   => $request->car_type_id,
             'cilindraje_id' => $request->cilindraje_id,
             'color_id'      => $request->color_id,
@@ -124,10 +124,28 @@ class CarController extends Controller
     }
     #endregion
 
+    public function updatePicture(Request $request , Car $car){
+        // Storage::delete( public_path('/uploads/tasks/' . $task->image));
+        $request->validate([
+            'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $car = Car::where('id',$request->id)->first();
+        
+        // $file = new Filesystem;
+        // $file->cleanDirectory('storage/avatars/'.$user->id);
+        
+        // $avatarName = $user->id.'_avatar'.time().'.'.request()->picture;
+        $path = $request->file('picture')->store('cars/'.$user->id.'/'.$car->id);  
+
+        $car->picture = '/storage/'.$path;
+        $car->save();
+    }
+
     public function getCar($id){
         $Car = Car::where('id', $id )->first();
         return response()->json(['car' => $Car]);
     }
+
      /**
      * Show the form for creating a new resource.
      *
