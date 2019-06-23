@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Movil;
 
+use App\Car;
 use App\Plan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -84,5 +85,14 @@ class PlanController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getCarSuscription ($id){
+        $car = Car::where('id', $id)->with('brand')->first();
+        return response()->json(['car' => $car]);
+    }
+    public function getPlanSuscription ($id){
+        $plan = Plan::where('id', $id)->with('wash_type')->first();
+        return response()->json(['plan' => $plan]);
     }
 }

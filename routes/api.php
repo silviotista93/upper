@@ -70,6 +70,13 @@ Route::group(['middleware' => 'auth:api','prefix' => 'plans', 'namespace'=>'Movi
 });
 Route::group(['middleware' => 'auth:api','prefix' => 'suscripciones', 'namespace'=>'Movil'], function () {
     Route::get('/suscripciones', 'SubscriptionController@index');
+    Route::post('/agregar-suscripcion', 'SubscriptionController@create');
+});
+
+Route::group(['middleware' => 'auth:api','prefix' => 'payment', 'namespace'=>'Movil'], function () {
+
+    Route::get('/car-suscription/{id}', 'PlanController@getCarSuscription');
+    Route::get('/plan-suscription/{id}', 'PlanController@getPlanSuscription');
 });
 
 Route::get('/test','Movil\CarController@index');

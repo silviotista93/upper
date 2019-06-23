@@ -24,6 +24,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CarSubscription extends Model
 {
+    protected $fillable = [
+        'subscription_id', 'cars_id'
+    ];
     public function car(){
         return $this->belongsTo(Car::class,'cars_id');
     }
