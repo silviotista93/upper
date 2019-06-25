@@ -45,16 +45,18 @@ Route::group(['middleware' => 'auth:api','prefix' => 'car', 'namespace'=>'Movil'
     Route::get('cars', 'CarController@index');
     Route::get('car/{id}', 'CarController@getCar');
     Route::get('cars-plans', 'CarController@getCarPlans');
-    Route::post('plan-type-washes', 'CarController@getPlanTypeWashes');
-    Route::post('create-car', 'CarController@createCar');
-    Route::post('upload-picture', 'CarController@uploadPicture');
-    Route::post('delete-car', 'CarController@deleteCar');
-    Route::post('update-picture', 'CarController@updatePicture');
     Route::get('add-car', 'CarController@store');
     Route::get('brand', 'CarController@getBrands');
     Route::get('color', 'CarController@getColors');
     Route::get('car-type', 'CarController@getTypeCar');
     Route::get('cilindraje', 'CarController@getCilindraje');
+    Route::post('plan-type-washes', 'CarController@getPlanTypeWashes');
+    Route::post('create-car', 'CarController@createCar');
+    Route::post('upload-picture', 'CarController@uploadPicture');
+    Route::post('delete-car', 'CarController@deleteCar');
+    Route::post('update-picture', 'CarController@updatePicture');
+    Route::put('update-car', 'CarController@updateCar');
+    
 });
 
 Route::group(['middleware' => 'auth:api','prefix' => 'order', 'namespace'=>'Movil'], function () {
