@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Movil;
 
 use App\Car;
 use App\CarSubscription;
+use App\Subscription;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -27,9 +29,21 @@ class SubscriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(Request $request){
+
+        $suscription = new Subscription([
+            'plan_id'   => $request->plan_id,
+            'date_start' => Carbon::now(),
+            'date_end' => Carbon::now()->addMonths(2),
+        ]);
+        $suscription->save();
+        $car_suscription = new CarSubscription([
+            'subscription_id'   => $suscription->id,
+            'cars_id' => $request->car_id,
+        ]);
+        $car_suscription->save();
+        return response()->json([
+            'message' => 'Creado exitosamente!'], 201);
     }
 
     /**

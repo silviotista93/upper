@@ -28,6 +28,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Subscription extends Model
 {
+    protected $fillable = [ 'plan_id', 'date_start', 'date_end'];
+
     public function car(){
         return $this->belongsToMany(Car::class,'car_subscriptions','subscription_id','cars_id');
     }
