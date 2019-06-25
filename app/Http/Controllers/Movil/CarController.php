@@ -129,7 +129,7 @@ class CarController extends Controller
         //     'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         // ]);
         // $user = User::where('id',$request->user()->id)->first();
-        // $car = Car::where('id',$request->id)->first();
+        $car = Car::where('id',$request->id)->first();
         
         // // $file = new Filesystem;
         // // $file->cleanDirectory('storage/avatars/'.$user->id);
@@ -141,7 +141,7 @@ class CarController extends Controller
         // $car->save();
 
         // return $car->picture;
-        return $request;
+        return $car;
     }
     #endregion
 
