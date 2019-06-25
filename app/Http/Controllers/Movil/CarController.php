@@ -112,8 +112,9 @@ class CarController extends Controller
     
     #region Borrar Auto
     public function deleteCar(Request $request){
-        $car = Car::findOrFail($request->id);   
-        $car->delete();
+        // $car = Car::findOrFail($request->id);   
+        // $car->delete();
+        Car::destroy($request->id);
         
         $cars = Car::where('user_id', $request->user()->id)->get();
         return response()->json([
@@ -140,9 +141,6 @@ class CarController extends Controller
         $car->save();
         
         return $car->picture;
-        // return response()->json([
-        //     'car' => $car,
-        //     'user' => $user ], 201);
     }
     #endregion
 
