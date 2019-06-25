@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CarSubscription extends Model
 {
+    protected $table = 'car_subscriptions';
     protected $fillable = [
         'subscription_id', 'cars_id'
     ];
