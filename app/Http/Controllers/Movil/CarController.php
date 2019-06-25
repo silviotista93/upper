@@ -18,16 +18,14 @@ use Illuminate\Filesystem\Filesystem;
 
 class CarController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
+    #region obtener todos los carros
     public function index(Request $request)
     {
         $cars = Car::where('user_id', $request->user()->id)->with('color','cilindrajes','car_type','brand')->get();
         return response()->json(['cars' => $cars]);
     }
+    #endregion
 
     #region Creacion de los autos
     public function createCar(Request $request)
@@ -46,6 +44,7 @@ class CarController extends Controller
 
         $car = new Car([
             'board'         => strtoupper($request->board),
+            // 'picture'       => '/storage/'. $path,
             'picture'       => '/storage/'. $request->picture,
             'car_type_id'   => $request->car_type_id,
             'cilindraje_id' => $request->cilindraje_id,
@@ -113,8 +112,9 @@ class CarController extends Controller
     
     #region Borrar Auto
     public function deleteCar(Request $request){
-        $car = Car::findOrFail($request->id);   
-        $car->delete();
+        // $car = Car::findOrFail($request->id);   
+        // $car->delete();
+        Car::destroy($request->id);
         
         $cars = Car::where('user_id', $request->user()->id)->get();
         return response()->json([
@@ -124,91 +124,85 @@ class CarController extends Controller
     }
     #endregion
 
+    #region Actualizar foto
     public function updatePicture(Request $request , Car $car){
         // Storage::delete( public_path('/uploads/tasks/' . $task->image));
         $request->validate([
             'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+        $user = User::where('id',$request->user()->id)->first();
         $car = Car::where('id',$request->id)->first();
         
-        // $file = new Filesystem;
-        // $file->cleanDirectory('storage/avatars/'.$user->id);
+        $file = new Filesystem;
+        $file->cleanDirectory('storage/cars/'.$user->id.'/'.$car->id);
         
-        // $avatarName = $user->id.'_avatar'.time().'.'.request()->picture;
         $path = $request->file('picture')->store('cars/'.$user->id.'/'.$car->id);  
-
         $car->picture = '/storage/'.$path;
         $car->save();
+        
+        return $car->picture;
     }
+    #endregion
 
+    
     public function getCar($id){
         $Car = Car::where('id', $id )->first();
         return response()->json(['car' => $Car]);
     }
 
-     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    #region Actualizar auto
+    public function updateCar(Request $request)
+    {
+        $request->validate([
+            'board'         => 'required|string|min:6|max:6|regex:/^[ A-Za-z0-9]+$/',
+            'car_type_id'   => 'required',
+            // 'picture'       => 'required|mimes:jpeg,png,jpg,gif,svg',
+            'cilindraje_id' => 'required',
+            'color_id'      => 'required',
+            'brand_id'      => 'required',
+        ]);
+
+        $carUpdate = Car::where('id',$request->id)->update([
+            'board'         => strtoupper($request->board),
+            'picture'       => $request->picture,
+            'car_type_id'   => $request->car_type_id,
+            'cilindraje_id' => $request->cilindraje_id,
+            'color_id'      => $request->color_id,
+            'brand_id'      => $request->brand_id,
+        ]);
+
+        return response()->json([
+            'newCar' => $carUpdate,
+            'message' => 'Auto actualizado'], 201);
+    }
+    #endregion
+
+    #region MAS METODOS
+   
     public function create()
     {
         //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy($id)
     {
-
+        // 
     }
+    #endregion
 }
