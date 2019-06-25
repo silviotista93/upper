@@ -44,6 +44,7 @@ class CarController extends Controller
 
         $car = new Car([
             'board'         => strtoupper($request->board),
+            // 'picture'       => '/storage/'. $path,
             'picture'       => '/storage/'. $request->picture,
             'car_type_id'   => $request->car_type_id,
             'cilindraje_id' => $request->cilindraje_id,
@@ -125,26 +126,23 @@ class CarController extends Controller
     #region Actualizar foto
     public function updatePicture(Request $request , Car $car){
         // Storage::delete( public_path('/uploads/tasks/' . $task->image));
-        // $request->validate([
-        //     'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        // ]);
+        $request->validate([
+            'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
         $user = User::where('id',$request->user()->id)->first();
         $car = Car::where('id',$request->id)->first();
         
-        // // $file = new Filesystem;
-        // // $file->cleanDirectory('storage/avatars/'.$user->id);
+        $file = new Filesystem;
+        $file->cleanDirectory('storage/cars/'.$user->id.'/'.$car->id);
         
-        // // $avatarName = $user->id.'_avatar'.time().'.'.request()->picture;
-        // $path = $request->file('picture')->store('cars/'.$user->id.'/'.$car->id);  
-
-        // $car->picture = '/storage/'.$path;
-        // $car->save();
-
-        // return $car->picture;
-        // return $car;
-        return response()->json([
-            'car' => $car,
-            'user' => $user ]);
+        $path = $request->file('picture')->store('cars/'.$user->id.'/'.$car->id);  
+        $car->picture = '/storage/'.$path;
+        $car->save();
+        
+        return $car->picture;
+        // return response()->json([
+        //     'car' => $car,
+        //     'user' => $user ], 201);
     }
     #endregion
 
