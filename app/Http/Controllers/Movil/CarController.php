@@ -128,7 +128,7 @@ class CarController extends Controller
         // $request->validate([
         //     'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         // ]);
-        // $user = User::where('id',$request->user()->id)->first();
+        $user = User::where('id',$request->user()->id)->first();
         $car = Car::where('id',$request->id)->first();
         
         // // $file = new Filesystem;
@@ -141,7 +141,10 @@ class CarController extends Controller
         // $car->save();
 
         // return $car->picture;
-        return $car;
+        // return $car;
+        return response()->json([
+            'car' => $car,
+            'user' => $user ]);
     }
     #endregion
 
