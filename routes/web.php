@@ -75,8 +75,4 @@ Route::group(['namespace'=>'Backend'],function (){
 
 });
 
-
-
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
