@@ -20,7 +20,17 @@ class SubscriptionController extends Controller
     {
         $suscripciones = CarSubscription::with('car', 'suscriptions.plans')->whereHas('car.clients', function ($query) use ($request){
             $query->where('id', '=',  $request->user()->id);
-        })->get();
+        })->orderby('updated_at','ASC')->get();
+        /*=============================================
+        Solicitud solamente suscripciones activas
+        =============================================*/
+        /*$suscripciones = CarSubscription::with('car','suscriptions.plans')
+            ->whereHas('suscriptions', function ($query){
+                $query->where('state', '=', 1);
+            })
+            ->whereHas('car.clients', function ($query) use ($request){
+                $query->where('id', '=',  $request->user()->id);
+            })->get();*/
         return response()->json(['suscripciones' => $suscripciones]);
     }
 

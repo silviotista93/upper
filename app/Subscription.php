@@ -28,6 +28,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Subscription extends Model
 {
+    const ACTIVE = 1;
+    const INACTIVE = 2;
+
     protected $fillable = [ 'plan_id', 'date_start', 'date_end'];
 
     public function car(){

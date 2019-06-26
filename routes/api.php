@@ -79,6 +79,7 @@ Route::group(['middleware' => 'auth:api','prefix' => 'payment', 'namespace'=>'Mo
 
     Route::get('/car-suscription/{id}', 'PlanController@getCarSuscription');
     Route::get('/plan-suscription/{id}', 'PlanController@getPlanSuscription');
+    Route::get('/get-cars-plans', 'PlanController@getCarsPlans');
 });
 
 Route::get('/test','Movil\CarController@index');
