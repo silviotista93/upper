@@ -17,6 +17,10 @@ class CreateSubscriptionsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('plan_id');
             $table->foreign('plan_id')->references('id')->on('plans');
+            $table->enum('state', [
+               \App\Subscription::ACTIVE,
+               \App\Subscription::INACTIVE
+            ])->default(\App\Subscription::ACTIVE);
             $table->timestamp('date_start')->nullable();
             $table->timestamp('date_end')->nullable();
             $table->timestamps();

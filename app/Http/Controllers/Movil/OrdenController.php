@@ -39,6 +39,7 @@ class OrdenController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->typesWash);
         $order = new Order([
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,

@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
           CREANDO 50 CLIENTES EN LA BASE DE DATOS
          =============================================*/
 
-        factory(\App\User::class, 50)->create([
+        factory(\App\User::class, 70)->create([
         ])->each(function (\App\User $u) {
             $u->roles()->attach(['3']);
         });
@@ -94,7 +94,7 @@ class DatabaseSeeder extends Seeder
                 $s->car()->attach($car->id);
             });
         });
-
+        factory(\App\Car::class, 20)->create();
     }
 }
 

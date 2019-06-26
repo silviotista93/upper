@@ -62,6 +62,12 @@ Route::get('plans', function (){
 Route::get('suscripciones', function (){
 });
 
+Route::get('get-cars', function (){
+    $suscripciones = \App\CarSubscription::with('car', 'suscriptions.plans')->whereHas('car.clients', function ($query){
+        $query->where('id', '=', 7);
+    })->get();
+    return $suscripciones;
+});
 /*=============================================
 
  =============================================*/
