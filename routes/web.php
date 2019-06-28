@@ -68,11 +68,11 @@ Route::get('get-cars', function (){
     })->get();
     return $suscripciones;
 });
-/*=============================================
 
- =============================================*/
 
+Route::group(['namespace'=>'Backend'],function (){
+    Route::get('/','Dashboard\DashboardController@index')->name('dashboard');
+
+});
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
