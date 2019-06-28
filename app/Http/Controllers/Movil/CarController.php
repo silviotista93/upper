@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\File;
 
 
 class CarController extends Controller
@@ -33,7 +34,7 @@ class CarController extends Controller
         $request->validate([
             'board'         => 'required|string|min:6|max:6|regex:/^[ A-Za-z0-9]+$/',
             'car_type_id'   => 'required',
-            // 'picture'       => 'required|mimes:jpeg,png,jpg,gif,svg',
+            // 'picture'       => 'required',
             'cilindraje_id' => 'required',
             'color_id'      => 'required',
             'brand_id'      => 'required',
@@ -68,9 +69,6 @@ class CarController extends Controller
         ]);
 
         $user = User::where('id',$request->user()->id)->first();
-
-        // $file = new Filesystem;
-        // $file->cleanDirectory('storage/cars/'.$user->id);
 
         $path = $request->file('picture')->store('cars/'.$user->id);  
         $path = str_replace("/","\\",$path);
@@ -128,20 +126,24 @@ class CarController extends Controller
 
     #region Actualizar foto
     public function updatePicture(Request $request , Car $car){
-        // Storage::delete( public_path('/uploads/tasks/' . $task->image));
         $request->validate([
             'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $user = User::where('id',$request->user()->id)->first();
         $car = Car::where('id',$request->id)->first();
-        
-        $file = new Filesystem;
-        $file->cleanDirectory('storage/cars/'.$user->id.'/'.$car->id);
-        
-        $path = $request->file('picture')->store('cars/'.$user->id.'/'.$car->id);  
-        $car->picture = '/storage/'.$path;
-        $car->save();
-        
+        $image = $car->picture;
+
+        if(\File::exists(public_path($image))){
+
+            \File::delete(public_path($image));
+            $path = $request->file('picture')->store('cars/'.$user->id.'/'.$car->id);  
+            $car->picture = '/storage/'.$path;
+            $car->save();
+        }  else{
+            $path = $request->file('picture')->store('cars/'.$user->id.'/'.$car->id);  
+            $car->picture = '/storage/'.$path;
+            $car->save();
+        }
         return $car->picture;
     }
     #endregion
@@ -152,13 +154,37 @@ class CarController extends Controller
         return response()->json(['car' => $Car]);
     }
 
+    // ESAT FUNCION SE PUEDE BORRAR, SOLO ERA PRUEBA
+    public function deleteImage(Request $request, Car $car){
+        $user = User::where('id',$request->user()->id)->first();
+        $car = Car::where('id',$request->id)->first();
+        
+        $image = $car->picture;
+        // $name = explode("/", $image);
+        // $lastElement = last($name);
+       
+        if(\File::exists(public_path($image))){
+
+            \File::delete(public_path($image));
+            $path = $request->file('picture')->store('cars/'.$user->id.'/'.$car->id);  
+            $car->picture = '/storage/'.$path;
+            $car->save();
+          }
+    
+        else{
+            dd('File does not exists.'); 
+        }
+
+        return response()->json(['image' => $car]); 
+    }
+
     #region Actualizar auto
     public function updateCar(Request $request)
     {
         $request->validate([
             'board'         => 'required|string|min:6|max:6|regex:/^[ A-Za-z0-9]+$/',
             'car_type_id'   => 'required',
-            // 'picture'       => 'required|mimes:jpeg,png,jpg,gif,svg',
+            // 'picture'       => 'required',
             'cilindraje_id' => 'required',
             'color_id'      => 'required',
             'brand_id'      => 'required',

@@ -39,13 +39,14 @@ class OrdenController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->typesWash);
+        // dd($request->typesWash);
         $order = new Order([
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
             'subscription_cars_id' => $request->subscription,
             'address' => $request->address,
-            'user_id' => $request->user_id
+            'user_id' => $request->user_id,
+            'description' => $request->description  
 
         ]);
         $order->save();
