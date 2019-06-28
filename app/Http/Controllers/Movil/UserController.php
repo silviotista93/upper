@@ -63,26 +63,16 @@ class UserController extends Controller
     {
         //
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
     #region ACTUALIZAR USUARIO
     public function update(Request $request)
     {
-        if($request){
-
-        
+        if($request){        
         $this->validate($request, [
             'names' => 'required',
             'last_name' => 'required',
             'phone_1' => 'required',
-
         ]);
-
         $updateProfile = User::where('id',$request->id)->update([
             'names' => ucfirst($request->names),
             'last_name' => ucfirst($request->last_name),
@@ -90,7 +80,6 @@ class UserController extends Controller
             'phone_1' => $request->phone_1,
             'phone_2' => $request->phone_2,
         ]);
-
         $userToken = User::where('id', $request->id)->first();
     
         $tokenResult =$userToken->createToken('Personal Access Token');
@@ -112,15 +101,11 @@ class UserController extends Controller
             return response()->json([
                 'error' => 'Usuario no actualizado'], 201);
         }
-
-        // return response()->json([
-        //     'message' => 'Successfully update user!'], 201);
     }
     #endregion
 
     #region ACTUALIZAR PASSWORD
     public function updatePassword (Request $request){
-        
         if ( $request->filled('password')) {
             $this->validate($request, [
                 'password' => 'confirmed|min:8',
@@ -129,11 +114,8 @@ class UserController extends Controller
             $newpassword = bcrypt($password);
             $user = User::where('id',$request->id)->update([
                 'password' => $newpassword
-
             ]);
-
             $userToken = User::where('id', $request->id)->first();
-    
             $tokenResult = $userToken->createToken('Personal Access Token');
             $token = $tokenResult->token;
             if ($request->remember_me) {
@@ -153,10 +135,10 @@ class UserController extends Controller
             return response()->json([
                 'error' => 'Contraseña no actualizada'], 201);
         }
-
     }
     #endregion
-
+    
+    #region ACTUALIZAR AVATAR
     public function updateAvatar(Request $request){
 
         $request->validate([
@@ -175,13 +157,8 @@ class UserController extends Controller
         
         return $user->avatar;
     }
+    #endregion
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

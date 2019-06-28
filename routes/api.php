@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth:api','prefix' => 'car', 'namespace'=>'Movil'
     Route::post('delete-car', 'CarController@deleteCar');
     Route::post('update-picture', 'CarController@updatePicture');
     Route::put('update-car', 'CarController@updateCar');
+    Route::post('delete-image', 'CarController@deleteImage');
     
 });
 
