@@ -13,6 +13,7 @@
     <title>{{ config('app.name') }}</title>
     <!-- Bootstrap Core CSS -->
     <link href="/backend/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/backend/assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
     <!-- Morries chart CSS -->
     <link href="/backend/assets/plugins/morrisjs/morris.css" rel="stylesheet">
 
@@ -278,41 +279,46 @@
                     <!-- ============================================================== -->
                     <!-- Search -->
                     <!-- ============================================================== -->
-                    <li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
+                   {{-- <li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
                         <form class="app-search">
                             <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
-                    </li>
+                    </li>--}}
 
                     <!-- ============================================================== -->
                     <!-- Language -->
                     <!-- ============================================================== -->
-                    <li class="nav-item dropdown">
+                    {{--<li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-us"></i></a>
                         <div class="dropdown-menu dropdown-menu-right scale-up"> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-in"></i> India</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-fr"></i> French</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-cn"></i> China</a> <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-de"></i> Dutch</a> </div>
-                    </li>
+                    </li>--}}
                     <!-- ============================================================== -->
                     <!-- Profile -->
                     <!-- ============================================================== -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/backend/assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
+                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ auth()->user()->avatar}}" alt="user" class="profile-pic" /></a>
                         <div class="dropdown-menu dropdown-menu-right scale-up">
                             <ul class="dropdown-user">
                                 <li>
                                     <div class="dw-user-box">
-                                        <div class="u-img"><img src="/backend/assets/images/users/1.jpg" alt="user"></div>
+                                        <div class="u-img"><img src="{{ auth()->user()->avatar }}" alt="user"></div>
                                         <div class="u-text">
-                                            <h4>Steave Jobs</h4>
-                                            <p class="text-muted">varun@gmail.com</p><a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                                            <h4>{{ auth()->user()->names}} {{ auth()->user()->last_name}}</h4>
+                                            <p class="text-muted">{{ auth()->user()->email }}</p><a href="{{ route('profile_user', auth()->user()->slug )}}" class="btn btn-rounded btn-danger btn-sm">Ver perfil</a></div>
                                     </div>
                                 </li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+                               {{-- <li><a href="#"><i class="ti-user"></i> Mi perfil</a></li>
                                 <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
                                 <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                <li role="separator" class="divider"></li>--}}
+                                <li>
+                                    <form id="form_logout" method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                    <a class="btn_logout" href="#"><i class="fa fa-power-off"></i> Logout</a>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                     </li>
@@ -334,6 +340,18 @@
     <!-- Page wrapper  -->
     <!-- ============================================================== -->
     <div class="page-wrapper">
+        @if(session()->has('error'))
+            <div class="alert alert-danger">{{session('error')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+            </div>
+
+        @endif
+        @if(session()->has('success'))
+                <div class="alert alert-success">{{session('success')}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                </div>
+
+        @endif
 
     @yield('content')
 
@@ -365,8 +383,10 @@
 <script src="/backend/js/jquery.slimscroll.js"></script>
 <!--Wave Effects -->
 <script src="/backend/js/waves.js"></script>
+<script src="/backend/js/layout.js"></script>
 <!--Menu sidebar -->
 <script src="/backend/js/sidebarmenu.js"></script>
+<script src="/backend/js/update_state_users.js"></script>
 <!--stickey kit -->
 <script src="/backend/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
 <script src="/backend/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
@@ -381,10 +401,15 @@
 <!-- sparkline chart -->
 <script src="/backend/assets/plugins/sparkline/jquery.sparkline.min.js"></script>
 <script src="/backend/js/dashboard4.js"></script>
+<script src="/backend/assets/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="/backend/assets/plugins/sweetalert/jquery.sweet-alert.custom.js"></script>
 <!-- ============================================================== -->
 <!-- Style switcher -->
 <!-- ============================================================== -->
 <script src="/backend/assets/plugins/styleswitcher/jQuery.style.switcher.js"></script>
+@include('sweet::alert')
+@section('js')
+@show
 </body>
 
 </html>

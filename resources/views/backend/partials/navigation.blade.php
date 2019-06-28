@@ -13,7 +13,7 @@
                         <li><a href="index4.html">Modern</a></li>
                     </ul>
                 </li>
-                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Clientes</span></a>
+                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-star"></i><span class="hide-menu">Clientes</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="app-calendar.html">Calendar</a></li>
                         <li>
@@ -31,37 +31,13 @@
                         <li><a href="app-contact-detail.html">Contact Detail</a></li>
                     </ul>
                 </li>
-                <li class="three-column"> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Empresas</span></a>
+                <li><a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-domain"></i><span class="hide-menu">Empresas</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="ui-cards.html">Cards</a></li>
-                        <li><a href="ui-user-card.html">User Cards</a></li>
-                        <li><a href="ui-buttons.html">Buttons</a></li>
-                        <li><a href="ui-modals.html">Modals</a></li>
-                        <li><a href="ui-tab.html">Tab</a></li>
-                        <li><a href="ui-tooltip-popover.html">Tooltip &amp; Popover</a></li>
-                        <li><a href="ui-tooltip-stylish.html">Tooltip stylish</a></li>
-                        <li><a href="ui-sweetalert.html">Sweet Alert</a></li>
-                        <li><a href="ui-notification.html">Notification</a></li>
-                        <li><a href="ui-progressbar.html">Progressbar</a></li>
-                        <li><a href="ui-nestable.html">Nestable</a></li>
-                        <li><a href="ui-range-slider.html">Range slider</a></li>
-                        <li><a href="ui-timeline.html">Timeline</a></li>
-                        <li><a href="ui-typography.html">Typography</a></li>
-                        <li><a href="ui-horizontal-timeline.html">Horizontal Timeline</a></li>
-                        <li><a href="ui-session-timeout.html">Session Timeout</a></li>
-                        <li><a href="ui-session-ideal-timeout.html">Session Ideal Timeout</a></li>
-                        <li><a href="ui-bootstrap.html">Bootstrap Ui</a></li>
-                        <li><a href="ui-breadcrumb.html">Breadcrumb</a></li>
-                        <li><a href="ui-bootstrap-switch.html">Bootstrap Switch</a></li>
-                        <li><a href="ui-list-media.html">List Media</a></li>
-                        <li><a href="ui-ribbons.html">Ribbons</a></li>
-                        <li><a href="ui-grid.html">Grid</a></li>
-                        <li><a href="ui-carousel.html">Carousel</a></li>
-                        <li><a href="ui-date-paginator.html">Date-paginator</a></li>
-                        <li><a href="ui-dragable-portlet.html">Dragable Portlet</a></li>
+                        <li><a href="{{ route('all_enterprise') }}">Administrar Empresas</a></li>
+                        <li><a href="ui-user-card.html">Agregar Empresa</a></li>
                     </ul>
                 </li>
-                <li class="two-column"> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-book-open-variant"></i><span class="hide-menu">Planes</span></a>
+                <li class="two-column"> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-content-paste"></i><span class="hide-menu">Suscripciones</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="starter-kit.html">Starter Kit</a></li>
 
@@ -100,7 +76,7 @@
                     </ul>
                 </li>
                 <li class="nav-small-cap">FORMS, TABLE &amp; WIDGETS</li>
-                <li class="two-column"> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Suscripciones</span></a>
+                <li class="two-column"> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-verified"></i><span class="hide-menu">Planes</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="form-basic.html">Basic Forms</a></li>
                         <li><a href="form-layout.html">Form Layouts</a></li>
@@ -135,7 +111,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-widgets"></i><span class="hide-menu">Reportes</span></a>
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu">Reportes</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li>
                             <a class="has-arrow " href="#" aria-expanded="false">Widgets</a>
@@ -193,19 +169,19 @@
                         </li>
                     </ul>
                 </li>
-                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-arrange-send-backward"></i><span class="hide-menu">Usuarios</span></a>
+                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Usuarios</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="#">item 1.1</a></li>
-                        <li><a href="#">item 1.2</a></li>
-                        <li> <a class="has-arrow" href="#" aria-expanded="false">Menu 1.3</a>
+                        <li><a href="{{ route('admin-users') }}">Administrar Usuarios</a></li>
+                        {{--<li><a href="#">item 1.2</a></li>--}}
+                        {{--<li> <a class="has-arrow" href="#" aria-expanded="false">Menu 1.3</a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="#">item 1.3.1</a></li>
                                 <li><a href="#">item 1.3.2</a></li>
                                 <li><a href="#">item 1.3.3</a></li>
                                 <li><a href="#">item 1.3.4</a></li>
                             </ul>
-                        </li>
-                        <li><a href="#">item 1.4</a></li>
+                        </li>--}}
+                        {{--<li><a href="#">item 1.4</a></li>--}}
                     </ul>
                 </li>
             </ul>

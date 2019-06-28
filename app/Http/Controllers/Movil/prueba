@@ -1,8 +1,0 @@
- $suscripciones = CarSubscription::with('car')
-            ->whereHas('suscriptions.plans', function ($query){
-                $query->where('state', '=', 1);
-            })
-            ->whereHas('car.clients', function ($query) use ($request){
-            $query->where('id', '=',  $request->user()->id);
-        })->get();
-        return response()->json(['suscripciones' => $suscripciones]);

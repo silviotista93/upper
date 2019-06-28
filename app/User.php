@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -16,7 +17,7 @@ use Laravel\Passport\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User query()
  * @mixin \Eloquent
  * @property int $id
- * @property string $name
+ * @property string $names
  * @property string|null $last_name
  * @property string|null $picture
  * @property string|null $phone_1
@@ -70,6 +71,10 @@ class User extends Authenticatable
         'names' ,'last_name', 'email', 'password','slug','avatar','phone_1','phone_2'
     ];
 
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -92,16 +97,16 @@ class User extends Authenticatable
         return 'slug';
     }
 
-    public function setNameAttribute($valor){
-        $this->name = ucfirst($valor);
+    public function setNamesAttribute($valor){
+        $this->attributes['names'] = strtolower($valor);
     }
 
-    public function getNameAttribute($valor){
+    public function getNamesAttribute($valor){
         return ucwords($valor);
     }
 
     public function setLast_NameAttribute($valor){
-        $this->last_name = ucfirst($valor);
+        $this->attributes['last_name'] = strtolower($valor);
     }
 
     public function getLast_NameAttribute($valor){
